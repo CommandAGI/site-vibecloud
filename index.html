@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VibeCloud — a control plane for your cloud infrastructure</title>
+<meta name="description" content="vibeCloud: describe what you need and it plans, provisions, wires and runs it across AWS, Google Cloud and Cloudflare. When a provider refuses, the workload moves.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://vibecloud.commandagi.app/">
+<link rel="alternate" hreflang="en" href="https://vibecloud.commandagi.app/">
+<link rel="alternate" hreflang="es" href="https://vibecloud.commandagi.app/es/">
+<link rel="alternate" hreflang="zh-Hans" href="https://vibecloud.commandagi.app/zh/">
+<link rel="alternate" hreflang="x-default" href="https://vibecloud.commandagi.app/">
+<meta property="og:title" content="VibeCloud — a control plane for your cloud infrastructure">
+<meta property="og:description" content="Describe a workload. vibeCloud plans it across providers, provisions it, wires it and runs it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vibecloud.commandagi.app/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="zh_CN">
+<link rel="stylesheet" href="style.css">
+<script src="app/lang.js" defer></script>
+<script src="app/console.js" type="module"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="/"><strong>vibeCloud</strong><span>a company of CommandAGI</span></a>
+  <nav class="main" aria-label="Main">
+    <a href="#product">Product</a>
+    <a href="#console">Console</a>
+    <a href="#providers">Providers</a>
+    <a href="#pricing">Pricing</a>
+    <a href="about.html">About</a>
+      <a href="team.html">Team</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <div>
+      <p class="eyebrow">Cloud control plane</p>
+      <h1>Describe your cloud. We provision, wire and run it.</h1>
+      <p class="lede">vibeCloud turns one sentence into running infrastructure across AWS, Google Cloud and Cloudflare. It picks the cheapest healthy account for each service, wires them together, and moves a workload when a provider refuses, degrades or raises its price.</p>
+      <div class="actions">
+        <a class="btn" href="#console">Try the console</a>
+        <a class="go" href="#product">How it works</a>
+      </div>
+    </div>
+    <figure class="diagram">
+      <svg viewBox="0 0 460 260" role="img" aria-label="One sentence goes into the planner, which places each resource on AWS, Google Cloud or Cloudflare and wires them to each other.">
+        <rect class="you" x="6" y="100" width="96" height="60" rx="10"/>
+        <text x="54" y="126" text-anchor="middle">a sentence</text>
+        <text x="54" y="142" text-anchor="middle">from a person</text>
+        <path class="wire" d="M102 130 H150" marker-end="url(#a)"/>
+        <rect class="box" x="150" y="92" width="120" height="76" rx="12"/>
+        <text x="210" y="122" text-anchor="middle">planner</text>
+        <text x="210" y="138" text-anchor="middle">capability · region</text>
+        <text x="210" y="152" text-anchor="middle">price · health</text>
+        <path class="wire" d="M270 112 H310"/>
+        <path class="wire" d="M270 130 H310"/>
+        <path class="wire" d="M270 148 H310"/>
+        <rect class="box" x="310" y="46" width="140" height="42" rx="10"/>
+        <text x="380" y="72" text-anchor="middle">AWS</text>
+        <rect class="box" x="310" y="110" width="140" height="42" rx="10"/>
+        <text x="380" y="136" text-anchor="middle">Google Cloud</text>
+        <rect class="box" x="310" y="174" width="140" height="42" rx="10"/>
+        <text x="380" y="200" text-anchor="middle">Cloudflare</text>
+        <path class="wire" d="M380 214 V232 H210 V168" stroke-dasharray="4 4"/>
+        <text x="222" y="248">one workload, wired across providers</text>
+        <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor"/></marker></defs>
+      </svg>
+      <figcaption>The plan names each resource's provider, region and price before anything is started.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap block" id="product" aria-labelledby="product-title">
+    <h2 id="product-title">How it works</h2>
+    <p class="sub">Four steps, one description. Nothing about a provider is in the description itself.</p>
+    <div class="cards">
+      <article class="card"><h3>1. Describe</h3><p>A web service, a database, a queue, object storage, a GPU, a region, a monthly ceiling. Capabilities, not product names.</p></article>
+      <article class="card"><h3>2. Plan</h3><p>Each resource goes to the cheapest healthy account that offers it in that region. The plan also says why the other accounts were left out, so you can check it.</p></article>
+      <article class="card"><h3>3. Provision and wire</h3><p>vibeCloud calls each provider's API, reads every resource back, then writes the wiring: database URL, queue endpoint, bucket policy and network rules.</p></article>
+      <article class="card"><h3>4. Fail over</h3><p>A provider that refuses, degrades or runs out of capacity is marked. The workload moves to another account under the same description, and the records say what moved.</p></article>
+    </div>
+  </section>
+
+  <section class="wrap block" id="console" aria-labelledby="console-title">
+    <h2 id="console-title">Try the console</h2>
+    <p class="sub">Describe a workload in one sentence. The console plans it in this browser against a sample provider catalog.</p>
+    <div class="console">
+      <p class="note" data-i18n="console.simulated">Simulated in your browser: no provider is called, and the prices are a sample.</p>
+      <noscript><p class="note">The console plans in your browser, so it needs JavaScript. The rules it follows are in <a href="about.html">About</a>.</p></noscript>
+      <form id="plan-form">
+        <label for="describe">Describe what you need</label>
+        <textarea id="describe" name="describe" rows="2" spellcheck="false">A web app in Europe with a Postgres database, a queue and object storage, under $250 a month.</textarea>
+        <div class="controls">
+          <button class="primary" type="submit">Plan it</button>
+          <label for="outage">One provider answers nothing</label>
+          <select id="outage" name="outage"><option value="">All providers healthy</option></select>
+        </div>
+      </form>
+      <div id="plan" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="wrap block" id="providers" aria-labelledby="providers-title">
+    <h2 id="providers-title">Providers</h2>
+    <p class="sub">The sample catalog holds five accounts. A real account is a row in VibeCloud's account list, not code.</p>
+    <div class="providers">
+      <div class="provider"><strong>AWS</strong><span>us-east-1, eu-central-1, ap-southeast-1</span></div>
+      <div class="provider"><strong>Google Cloud</strong><span>us-central1, europe-west3, asia-south1</span></div>
+      <div class="provider"><strong>Cloudflare</strong><span>edge in every region: containers, D1, R2, queues, CDN</span></div>
+      <div class="provider"><strong>Hetzner</strong><span>eu: the cheapest virtual machine in the sample</span></div>
+      <div class="provider"><strong>Runpod</strong><span>us and eu: GPU by the hour</span></div>
+    </div>
+    <p class="note">Capabilities: virtual machines, containers, GPUs, Postgres, MySQL, D1, object storage, queues, CDN, functions and model endpoints. The console you just used follows the same placement rules as the provisioner will: capability and region first, then health, then price.</p>
+  </section>
+
+  <section class="wrap block" id="pricing" aria-labelledby="pricing-title">
+    <h2 id="pricing-title">Pricing</h2>
+    <p class="sub">Early access. VibeCloud runs the first workloads for the companies of CommandAGI. A public plan is not set, and the console offers no sign-up.</p>
+    <p class="note">The provider prices in the console are round numbers for a demo, not quotes. For a workload of your own, write to <a href="mailto:hello@vibecloud.pro">hello@vibecloud.pro</a>.</p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p id="lang-hint" hidden><a href="/es/" hreflang="es">Ver en español</a></p>
+  <div class="row">
+    <p>© 2026 VibeCloud · a company of CommandAGI · <a href="mailto:hello@vibecloud.pro">hello@vibecloud.pro</a></p>
+    <nav aria-label="Footer">
+      <a href="about.html">About</a>
+      <a href="mailto:hello@vibecloud.pro">Contact</a>
+      <button class="lang-button" type="button" id="lang-button" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Language">A/文</button>
+    </nav>
+  </div>
+  <noscript><p><a href="/" hreflang="en">English</a> · <a href="/es/" hreflang="es">Español</a> · <a href="/zh/" hreflang="zh-Hans">简体中文</a></p></noscript>
+</footer>
+
+<dialog id="lang-dialog" aria-labelledby="lang-title">
+  <h2 id="lang-title">Choose a language</h2>
+  <ul>
+    <li><a href="/" data-lang="en" lang="en" aria-current="true">English</a></li>
+    <li><a href="/es/" data-lang="es" lang="es">Español</a></li>
+    <li><a href="/zh/" data-lang="zh" lang="zh-Hans">简体中文</a></li>
+  </ul>
+  <form method="dialog"><button class="lang-button close" type="submit">Close</button></form>
+</dialog>
+</body>
+</html>

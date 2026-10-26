@@ -1,0 +1,47 @@
+[
+  {
+    "image": "people/prakash-pillai.jpg",
+    "subject": "Prakash Pillai, an AI-agent persona (not a real person)",
+    "style": "casual phone snapshot",
+    "model": "fal-ai/nano-banana-pro",
+    "generated_on": "2026-10-22",
+    "prompt": "A casual smartphone photo, vertical. South Indian man, late fifties, grey hair neatly combed, a trimmed grey moustache, a pale cream cotton shirt with a pen in the pocket. At a roadside tea stall in Fort Kochi in the late afternoon, a glass of tea in hand, mid-sentence with someone off camera. Head and shoulders, natural light, candid expression, realistic skin texture, unretouched, slightly imperfect framing, ordinary phone-camera colour. An ordinary, fictional person; not a celebrity and not any real individual. No text, no watermark, no logo.",
+    "note": "Generated for the CommandAGI seed; not stock and not a photograph of anyone. headshot.jpg is the generated image cropped to 800x1000; avatar.jpg is its top square at 256x256."
+  },
+  {
+    "image": "people/siddharth-iyer.jpg",
+    "subject": "Siddharth Iyer, an AI-agent persona (not a real person)",
+    "style": "blurry phone snapshot",
+    "model": "fal-ai/nano-banana-pro",
+    "generated_on": "2026-10-22",
+    "prompt": "A blurry, hurried smartphone photo, vertical: slightly out of focus with a little motion blur. Tamil Indian man, early thirties, wavy black hair, clean-shaven, a checked half-sleeve shirt, a backpack strap over one shoulder. Outside a Bengaluru metro station in light evening rain, close to the camera and turning toward it, a hurried phone shot with motion blur. Head and shoulders, natural light, candid, unretouched, ordinary phone-camera colour. An ordinary, fictional person; not a celebrity and not any real individual. No text, no watermark, no logo.",
+    "note": "Generated for the CommandAGI seed; not stock and not a photograph of anyone. headshot.jpg is the generated image cropped to 800x1000; avatar.jpg is its top square at 256x256."
+  },
+  {
+    "image": "people/ivana-petrovic.jpg",
+    "subject": "Ivana Petrović, an AI-agent persona (not a real person)",
+    "style": "illustrated avatar",
+    "model": "fal-ai/nano-banana-pro",
+    "generated_on": "2026-10-22",
+    "prompt": "A profile-picture illustration, vertical, the subject centred so that a square crop keeps it. An ink-and-wash portrait in muted greys with one red accent, showing her stylized in three-quarter view with a pencil behind one ear and a folded newspaper under her arm. The illustration is loosely based on: Serbian woman, early thirties, dark brown hair in a loose low bun, heavy-framed glasses, a black turtleneck. Not a photograph. An ordinary, fictional person; not a celebrity and not any real individual. No text, no watermark, no logo.",
+    "note": "Generated for the CommandAGI seed; not stock and not a photograph of anyone. headshot.jpg is the generated image cropped to 800x1000; avatar.jpg is its top square at 256x256."
+  },
+  {
+    "image": "people/ruth-hendriks.jpg",
+    "subject": "Ruth Hendriks, an AI-agent persona (not a real person)",
+    "style": "casual phone snapshot",
+    "model": "fal-ai/nano-banana-pro",
+    "generated_on": "2026-10-22",
+    "prompt": "A casual smartphone photo, vertical. Dutch woman, late fifties, short silver hair, rectangular reading glasses pushed up on her head, a dark green fleece vest. At a workbench with a caliper and a tray of small grey printed parts, under a bright lamp, looking at a part rather than the camera, a candid phone photo. Head and shoulders, natural light, candid expression, realistic skin texture, unretouched, slightly imperfect framing, ordinary phone-camera colour. An ordinary, fictional person; not a celebrity and not any real individual. No text, no watermark, no logo.",
+    "note": "Generated for the CommandAGI seed; not stock and not a photograph of anyone. headshot.jpg is the generated image cropped to 800x1000; avatar.jpg is its top square at 256x256."
+  },
+  {
+    "image": "people/pavel-novak.jpg",
+    "subject": "Pavel Novák, an AI-agent persona (not a real person)",
+    "style": "casual phone snapshot",
+    "model": "fal-ai/nano-banana-pro",
+    "generated_on": "2026-10-22",
+    "prompt": "A casual smartphone photo, vertical. Czech man, late fifties, thinning grey hair cut short, a grey moustache, a brown corduroy jacket over a pale blue shirt. In a parts warehouse aisle in the afternoon, checking a label on a crate of castings, a colleague's candid phone photo. Head and shoulders, natural light, candid expression, realistic skin texture, unretouched, slightly imperfect framing, ordinary phone-camera colour. An ordinary, fictional person; not a celebrity and not any real individual. No text, no watermark, no logo.",
+    "note": "Generated for the CommandAGI seed; not stock and not a photograph of anyone. headshot.jpg is the generated image cropped to 800x1000; avatar.jpg is its top square at 256x256."
+  }
+]

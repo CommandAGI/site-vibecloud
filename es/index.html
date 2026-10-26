@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VibeCloud — un plano de control para tu infraestructura en la nube</title>
+<meta name="description" content="vibeCloud: describe lo que necesitas y lo planifica, aprovisiona, conecta y ejecuta en AWS, Google Cloud y Cloudflare. Cuando un proveedor falla, la carga se mueve.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="canonical" href="https://vibecloud.commandagi.app/es/">
+<link rel="alternate" hreflang="en" href="https://vibecloud.commandagi.app/">
+<link rel="alternate" hreflang="es" href="https://vibecloud.commandagi.app/es/">
+<link rel="alternate" hreflang="zh-Hans" href="https://vibecloud.commandagi.app/zh/">
+<link rel="alternate" hreflang="x-default" href="https://vibecloud.commandagi.app/">
+<meta property="og:title" content="VibeCloud — un plano de control para tu infraestructura en la nube">
+<meta property="og:description" content="Describe una carga de trabajo. vibeCloud la planifica entre proveedores, la aprovisiona, la conecta y la ejecuta.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vibecloud.commandagi.app/es/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<link rel="stylesheet" href="../style.css">
+<script src="../app/lang.js" defer></script>
+<script src="../app/console.js" type="module"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="/"><strong>vibeCloud</strong><span>una empresa de CommandAGI</span></a>
+  <nav class="main" aria-label="Principal">
+    <a href="#product">Producto</a>
+    <a href="#console">Consola</a>
+    <a href="#providers">Proveedores</a>
+    <a href="#pricing">Precios</a>
+    <a href="../about.html">Acerca de</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <div>
+      <p class="eyebrow">Plano de control en la nube</p>
+      <h1>Describe tu nube. Nosotros la aprovisionamos, la conectamos y la ejecutamos.</h1>
+      <p class="lede">vibeCloud convierte una frase en infraestructura en marcha en AWS, Google Cloud y Cloudflare. Elige la cuenta sana más barata para cada servicio, los conecta entre sí y mueve una carga cuando un proveedor falla, se degrada o sube el precio.</p>
+      <div class="actions">
+        <a class="btn" href="#console">Probar la consola</a>
+        <a class="go" href="#product">Cómo funciona</a>
+      </div>
+    </div>
+    <figure class="diagram">
+      <svg viewBox="0 0 460 260" role="img" aria-label="Una frase entra en el planificador, que coloca cada recurso en AWS, Google Cloud o Cloudflare y los conecta entre sí.">
+        <rect class="you" x="6" y="100" width="96" height="60" rx="10"/>
+        <text x="54" y="126" text-anchor="middle">una frase</text>
+        <text x="54" y="142" text-anchor="middle">de una persona</text>
+        <path class="wire" d="M102 130 H150" marker-end="url(#a)"/>
+        <rect class="box" x="150" y="92" width="120" height="76" rx="12"/>
+        <text x="210" y="122" text-anchor="middle">planificador</text>
+        <text x="210" y="138" text-anchor="middle">capacidad · región</text>
+        <text x="210" y="152" text-anchor="middle">precio · salud</text>
+        <path class="wire" d="M270 112 H310"/>
+        <path class="wire" d="M270 130 H310"/>
+        <path class="wire" d="M270 148 H310"/>
+        <rect class="box" x="310" y="46" width="140" height="42" rx="10"/>
+        <text x="380" y="72" text-anchor="middle">AWS</text>
+        <rect class="box" x="310" y="110" width="140" height="42" rx="10"/>
+        <text x="380" y="136" text-anchor="middle">Google Cloud</text>
+        <rect class="box" x="310" y="174" width="140" height="42" rx="10"/>
+        <text x="380" y="200" text-anchor="middle">Cloudflare</text>
+        <path class="wire" d="M380 214 V232 H210 V168" stroke-dasharray="4 4"/>
+        <text x="222" y="248">una carga, conectada entre proveedores</text>
+        <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor"/></marker></defs>
+      </svg>
+      <figcaption>El plan indica el proveedor, la región y el precio de cada recurso antes de iniciar nada.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap block" id="product" aria-labelledby="product-title">
+    <h2 id="product-title">Cómo funciona</h2>
+    <p class="sub">Cuatro pasos, una descripción. El proveedor no aparece en la descripción.</p>
+    <div class="cards">
+      <article class="card"><h3>1. Describe</h3><p>Un servicio web, una base de datos, una cola, almacenamiento de objetos, una GPU, una región y un techo mensual. Capacidades, no nombres de productos.</p></article>
+      <article class="card"><h3>2. Planifica</h3><p>Cada recurso va a la cuenta sana más barata que lo ofrece en esa región. El plan también dice por qué quedaron fuera las otras cuentas, para que puedas comprobarlo.</p></article>
+      <article class="card"><h3>3. Aprovisiona y conecta</h3><p>vibeCloud llama a la API de cada proveedor, vuelve a leer cada recurso y escribe las conexiones: la URL de la base de datos, el extremo de la cola, la política del bucket y las reglas de red.</p></article>
+      <article class="card"><h3>4. Migra</h3><p>Un proveedor que falla, se degrada o se queda sin capacidad queda marcado. La carga pasa a otra cuenta con la misma descripción, y los registros dicen qué se movió.</p></article>
+    </div>
+  </section>
+
+  <section class="wrap block" id="console" aria-labelledby="console-title">
+    <h2 id="console-title">Prueba la consola</h2>
+    <p class="sub">Describe una carga en una frase. La consola la planifica en este navegador con un catálogo de proveedores de ejemplo.</p>
+    <div class="console">
+      <p class="note">Simulado en tu navegador: no se llama a ningún proveedor y los precios son una muestra.</p>
+      <noscript><p class="note">La consola planifica en tu navegador, así que necesita JavaScript. Las reglas que sigue están en <a href="../about.html">Acerca de</a>.</p></noscript>
+      <form id="plan-form">
+        <label for="describe">Describe lo que necesitas</label>
+        <textarea id="describe" name="describe" rows="2" spellcheck="false">Una aplicación web en Europa con una base de datos Postgres, una cola y almacenamiento de objetos, por menos de $250 al mes.</textarea>
+        <div class="controls">
+          <button class="primary" type="submit">Planificar</button>
+          <label for="outage">Un proveedor no responde</label>
+          <select id="outage" name="outage"><option value="">Todos los proveedores sanos</option></select>
+        </div>
+      </form>
+      <div id="plan" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="wrap block" id="providers" aria-labelledby="providers-title">
+    <h2 id="providers-title">Proveedores</h2>
+    <p class="sub">El catálogo de ejemplo tiene cinco cuentas. Una cuenta real es una fila en la lista de cuentas de VibeCloud, no código.</p>
+    <div class="providers">
+      <div class="provider"><strong>AWS</strong><span>us-east-1, eu-central-1, ap-southeast-1</span></div>
+      <div class="provider"><strong>Google Cloud</strong><span>us-central1, europe-west3, asia-south1</span></div>
+      <div class="provider"><strong>Cloudflare</strong><span>edge en todas las regiones: contenedores, D1, R2, colas, CDN</span></div>
+      <div class="provider"><strong>Hetzner</strong><span>eu: la máquina virtual más barata de la muestra</span></div>
+      <div class="provider"><strong>Runpod</strong><span>us y eu: GPU por hora</span></div>
+    </div>
+    <p class="note">Capacidades: máquinas virtuales, contenedores, GPU, Postgres, MySQL, D1, almacenamiento de objetos, colas, CDN, funciones y extremos de modelos. La consola que acabas de usar sigue las mismas reglas de colocación que el aprovisionador: primero capacidad y región, luego salud, luego precio.</p>
+  </section>
+
+  <section class="wrap block" id="pricing" aria-labelledby="pricing-title">
+    <h2 id="pricing-title">Precios</h2>
+    <p class="sub">Acceso anticipado. VibeCloud ejecuta las primeras cargas de las empresas de CommandAGI. No hay un plan público y la consola no ofrece registro.</p>
+    <p class="note">Los precios de proveedores de la consola son números redondos para una demostración, no cotizaciones. Para una carga tuya, escribe a <a href="mailto:hello@vibecloud.pro">hello@vibecloud.pro</a>.</p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p id="lang-hint" hidden><a href="/es/" hreflang="es">Ver en español</a></p>
+  <div class="row">
+    <p>© 2026 VibeCloud · una empresa de CommandAGI · <a href="mailto:hello@vibecloud.pro">hello@vibecloud.pro</a></p>
+    <nav aria-label="Pie de página">
+      <a href="../about.html">Acerca de</a>
+      <a href="mailto:hello@vibecloud.pro">Contacto</a>
+      <button class="lang-button" type="button" id="lang-button" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Idioma">A/文</button>
+    </nav>
+  </div>
+  <noscript><p><a href="/" hreflang="en">English</a> · <a href="/es/" hreflang="es">Español</a> · <a href="/zh/" hreflang="zh-Hans">简体中文</a></p></noscript>
+</footer>
+
+<dialog id="lang-dialog" aria-labelledby="lang-title">
+  <h2 id="lang-title">Elige un idioma</h2>
+  <ul>
+    <li><a href="/" data-lang="en" lang="en">English</a></li>
+    <li><a href="/es/" data-lang="es" lang="es" aria-current="true">Español</a></li>
+    <li><a href="/zh/" data-lang="zh" lang="zh-Hans">简体中文</a></li>
+  </ul>
+  <form method="dialog"><button class="lang-button close" type="submit">Cerrar</button></form>
+</dialog>
+</body>
+</html>

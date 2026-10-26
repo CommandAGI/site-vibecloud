@@ -1,0 +1,122 @@
+// The console's words, in the three locales the site ships. One key per message; the tests hold the three in step.
+export const MESSAGES = {
+    en: {
+        'console.simulated': 'Simulated in your browser: no provider is called, and the prices are a sample.',
+        'console.label': 'Describe what you need',
+        'console.plan': 'Plan it',
+        'console.provision': 'Provision this plan',
+        'console.outage': 'One provider answers nothing',
+        'console.healthy': 'All providers healthy',
+        'console.resource': 'Resource',
+        'console.provider': 'Where it runs',
+        'console.price': 'Price',
+        'console.month': 'A month',
+        'console.total': 'Estimated total',
+        'console.why': 'Why not the others',
+        'console.reason': 'reason',
+        'console.unplaced': 'No account can take this within the price.',
+        'console.withinBudget': 'Within the {budget} a month you named.',
+        'console.overBudget': 'This plan costs more than the {budget} a month you named.',
+        'console.assumptions': 'A month is 730 hours, {requests} requests and {tokens} tokens.',
+        'console.provisioning': 'Provisioning {resource}…',
+        'console.wired': 'Wired {from} → {to}',
+        'console.running': 'Running on {count} providers. Estimated {cost} a month.',
+        'console.moved': 'Moved: {resource} from {from} to {to}.',
+        'console.movedNone': 'Nothing moved.',
+        'console.failed': 'No account can take {resource} now.',
+        'console.parseEmpty': 'Name a resource: a web app, a database, a queue, object storage, a GPU, a function or a model.',
+        'console.needJs': 'The console plans in your browser, so it needs JavaScript. The rules it follows are in the site’s docs.',
+        'console.best': 'lowest price among the healthy accounts',
+        'console.region': 'Region',
+        'console.anyRegion': 'any region',
+        'console.globalRegion': 'global',
+        'console.planTitle': 'The plan',
+        'console.steps': 'Provisioning',
+        'console.select': 'Choose a sentence',
+    },
+    es: {
+        'console.simulated': 'Simulado en tu navegador: no se llama a ningún proveedor y los precios son una muestra.',
+        'console.label': 'Describe lo que necesitas',
+        'console.plan': 'Planificar',
+        'console.provision': 'Aprovisionar este plan',
+        'console.outage': 'Un proveedor no responde',
+        'console.healthy': 'Todos los proveedores sanos',
+        'console.resource': 'Recurso',
+        'console.provider': 'Dónde se ejecuta',
+        'console.price': 'Precio',
+        'console.month': 'Al mes',
+        'console.total': 'Total estimado',
+        'console.why': 'Por qué no los otros',
+        'console.reason': 'motivo',
+        'console.unplaced': 'Ninguna cuenta puede aceptarlo dentro del precio.',
+        'console.withinBudget': 'Dentro de los {budget} al mes que indicaste.',
+        'console.overBudget': 'Este plan cuesta más de los {budget} al mes que indicaste.',
+        'console.assumptions': 'Un mes son 730 horas, {requests} solicitudes y {tokens} tokens.',
+        'console.provisioning': 'Aprovisionando {resource}…',
+        'console.wired': 'Conectado {from} → {to}',
+        'console.running': 'En ejecución en {count} proveedores. Estimado: {cost} al mes.',
+        'console.moved': 'Movido: {resource} de {from} a {to}.',
+        'console.movedNone': 'No se movió nada.',
+        'console.failed': 'Ninguna cuenta puede aceptar {resource} ahora.',
+        'console.parseEmpty': 'Nombra un recurso: una aplicación web, una base de datos, una cola, almacenamiento de objetos, una GPU, una función o un modelo.',
+        'console.needJs': 'La consola planifica en tu navegador, así que necesita JavaScript. Las reglas que sigue están en la documentación del sitio.',
+        'console.best': 'el precio más bajo entre las cuentas sanas',
+        'console.region': 'Región',
+        'console.anyRegion': 'cualquier región',
+        'console.globalRegion': 'global',
+        'console.planTitle': 'El plan',
+        'console.steps': 'Aprovisionamiento',
+        'console.select': 'Elige una frase',
+    },
+    zh: {
+        'console.simulated': '在你的浏览器中模拟：不调用任何云服务商，价格只是示例。',
+        'console.label': '描述你的需求',
+        'console.plan': '生成方案',
+        'console.provision': '开通此方案',
+        'console.outage': '让一个服务商无响应',
+        'console.healthy': '所有服务商正常',
+        'console.resource': '资源',
+        'console.provider': '运行位置',
+        'console.price': '价格',
+        'console.month': '每月',
+        'console.total': '预计总计',
+        'console.why': '为什么不是其他服务商',
+        'console.reason': '原因',
+        'console.unplaced': '没有账户能在该价格内承接。',
+        'console.withinBudget': '在你指定的每月 {budget} 之内。',
+        'console.overBudget': '此方案超过你指定的每月 {budget}。',
+        'console.assumptions': '一个月按 730 小时、{requests} 次请求和 {tokens} 个 token 计算。',
+        'console.provisioning': '正在开通 {resource}…',
+        'console.wired': '已连接 {from} → {to}',
+        'console.running': '正在 {count} 个服务商上运行。预计每月 {cost}。',
+        'console.moved': '已迁移：{resource} 从 {from} 到 {to}。',
+        'console.movedNone': '没有资源迁移。',
+        'console.failed': '现在没有账户能承接 {resource}。',
+        'console.parseEmpty': '请指明资源：一个网页应用、一个数据库、一个队列、对象存储、一块 GPU、一个函数或一个模型。',
+        'console.needJs': '控制台在你的浏览器中规划，因此需要 JavaScript。它遵循的规则写在站点文档中。',
+        'console.best': '健康账户中最低的价格',
+        'console.region': '区域',
+        'console.anyRegion': '任意区域',
+        'console.globalRegion': '全球',
+        'console.planTitle': '方案',
+        'console.steps': '开通过程',
+        'console.select': '选择一句话',
+    },
+};
+
+/** The catalog for a page's language: `zh-Hans` and `zh-CN` read `zh`; anything else reads English. */
+export function catalogFor(lang) {
+    const tag = String(lang ?? '').toLowerCase();
+    if (tag.startsWith('zh')) return MESSAGES.zh;
+    if (tag.startsWith('es')) return MESSAGES.es;
+    return MESSAGES.en;
+}
+
+/** A message with `{name}` values filled in; an unknown key is its key, so a missing word is visible, not blank. */
+export function makeT(lang) {
+    const catalog = catalogFor(lang);
+    return (key, values = {}) => {
+        const text = catalog[key] ?? MESSAGES.en[key] ?? key;
+        return text.replace(/\{(\w+)\}/g, (m, name) => (name in values ? String(values[name]) : m));
+    };
+}
