@@ -27,7 +27,7 @@ scroll-driven stage). `python3 tests/journey.py` drives every interaction in Chr
 What the screenshots changed: the hero grid went from 1fr to minmax(0, 1fr) (320 px scrolled sideways); the
 topology got a stacked layout for phones (its labels were 6 px); the stage sentence was shortened (it clipped at
 390); the nav separator stopped taking the current page's underline; the generated agent-team CSS block came back
-(cards had lost their grid); the wordmark's gap closed; graph paper under the hero (it read flat).
+(cards had lost their grid); the wordmark's gap closed; graph paper under the hero (it read flat); the stage's lane labels knock out the fan lines that crossed them.
 
 ## Scores (own, against §5.4)
 
@@ -38,5 +38,5 @@ topology got a stacked layout for phones (its labels were 6 px); the stage sente
 | product expression | 9 | the hero is the product's loop (command → priced diff → approve → apply → verified), priced by the real planner |
 | interaction | 8 | ⌘K palette with keyboard, typed commands, the console, outage, sample sentences, video pause |
 | technical quality | 8 | static, ~90 KB JS+CSS, fonts 59 KB, video lazy, CSP with no other host, no-script page draws the fleet |
-| craft | 7.5 | hairlines and states are careful; the scroll stage's fan lines cross a lane label |
-| **average** | **8.1** | nothing below 7 |
+| craft | 8 | hairlines and states are careful; the stage's lane labels knock out the lines that cross them |
+| **average** | **8.2** | nothing below 7 |

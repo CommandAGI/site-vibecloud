@@ -159,9 +159,8 @@ function stage(L) {
     const chip = (cls, x, y, text) => `<g class="chip ${cls}"><rect x="${x}" y="${y}" width="118" height="28"/><text x="${x + 10}" y="${y + 18}">${text}</text></g>`;
     return `<svg class="stage-svg" viewBox="0 0 480 400" role="img" aria-label="${esc(L.how.stage)}">
 <g class="s s1"><rect class="sentence" x="10" y="12" width="460" height="40"/><text class="sentence-t" x="24" y="37">› web app · eu · postgres · queue · storage · ≤ $250</text></g>
-<g class="s s2">${lanes.map(([name, id, x], i) => `<g class="lane lane-${i}"><line x1="${x}" x2="${x}" y1="96" y2="388"/><text class="lane-t" x="${x}" y="84" text-anchor="middle">${name}</text><text class="lane-id" x="${x}" y="384" text-anchor="middle">${id}</text></g>`).join('')}
-${chip('c-ct', 33, 120, 'container')}${chip('c-st', 33, 170, 'storage')}${chip('c-qu', 33, 220, 'queue')}${chip('c-db', 173, 270, 'postgres')}
-<path class="fan" d="M240 52 C 240 80, 92 90, 92 120 M240 52 C 240 90, 232 240, 232 270"/></g>
+<g class="s s2"><path class="fan" d="M240 52 C 240 80, 92 90, 92 120 M240 52 C 240 90, 232 240, 232 270"/>${lanes.map(([name, id, x], i) => `<g class="lane lane-${i}"><line x1="${x}" x2="${x}" y1="96" y2="388"/><text class="lane-t" x="${x}" y="84" text-anchor="middle">${name}</text><text class="lane-id" x="${x}" y="384" text-anchor="middle">${id}</text></g>`).join('')}
+${chip('c-ct', 33, 120, 'container')}${chip('c-st', 33, 170, 'storage')}${chip('c-qu', 33, 220, 'queue')}${chip('c-db', 173, 270, 'postgres')}</g>
 <g class="s s3"><path class="wire" d="M92 148 V170 M92 198 V220 M151 134 H200 C 220 134, 232 200, 232 270"/><text class="ok-t" x="300" y="140">✓ read back</text><text class="ok-t" x="300" y="160">✓ wired</text></g>
 <g class="s s4"><rect class="down" x="173" y="96" width="118" height="270"/><text class="down-t" x="232" y="118" text-anchor="middle">${esc(L.how.down)}</text>
 ${chip('c-db2', 313, 270, 'postgres')}<path class="move" d="M291 284 H313"/><text class="move-t" x="372" y="320" text-anchor="middle">${esc(L.how.moved)}: gcp → aws</text></g>

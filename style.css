@@ -216,7 +216,7 @@ nav.main a[aria-current="page"] { text-decoration: underline 1px var(--amber); t
 .stage-svg .sentence { fill: var(--panel); stroke: var(--line); }
 .stage-svg .sentence-t { fill: var(--ice); font-size: 12.5px; }
 .stage-svg .lane line { stroke: var(--line); stroke-dasharray: 2 4; }
-.stage-svg .lane-t { fill: var(--ice); font: 500 13px var(--sans); }
+.stage-svg .lane-t { fill: var(--ice); font: 500 13px var(--sans); paint-order: stroke; stroke: var(--navy); stroke-width: 6px; }
 .stage-svg .lane-id { fill: var(--steel); font-size: 10.5px; }
 .stage-svg .chip rect { fill: var(--panel); stroke: var(--steel); }
 .stage-svg .fan, .stage-svg .wire, .stage-svg .move { fill: none; stroke: var(--steel); stroke-width: 1.2; }
