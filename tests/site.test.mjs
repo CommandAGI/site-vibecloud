@@ -151,3 +151,53 @@ test('an empty or unrelated description names no resource', () => {
     assert.deepEqual(parseWorkload('hello').resources, []);
     assert.deepEqual(parseWorkload('').resources, []);
 });
+
+test('the hero fleet: a command proposes a diff priced by the planner, and refuses what it cannot draw', async () => {
+    const { START, apply, diff } = await import('../app/fleet.js');
+    const up = apply(START, 'scale api to 6 in us-west');
+    assert.equal(up.fleet['us-west'].api, 6);
+    assert.equal(START['us-west'].api, 3, 'a command never changes the fleet it reads');
+    const change = diff(START, up.fleet);
+    assert.deepEqual(change.rows, [{ region: 'us-west', service: 'api', count: 3, account: 'cloudflare/main', monthly: 87.6 }]);
+    const down = diff(START, apply(START, 'remove db in eu-central').fleet);
+    assert.equal(down.rows[0].count, -1);
+    assert.equal(down.rows[0].account, 'gcp/main', 'Postgres in eu prices on the cheapest account, as the console places it');
+    assert.equal(down.monthly, -73);
+    assert.deepEqual(apply(START, 'scale api to 9 in us-west'), { error: 'cap' });
+    assert.deepEqual(apply(START, 'scale api to 2 in mars'), { error: 'unknown' });
+    assert.deepEqual(apply(START, 'make it fast'), { error: 'unknown' });
+});
+
+test('draining a region moves each replica to another region and loses none', async () => {
+    const { START, REGIONS, SERVICES, apply } = await import('../app/fleet.js');
+    const { fleet } = apply(START, 'drain us-east');
+    for (const s of SERVICES) assert.equal(fleet['us-east'][s], 0, s);
+    const total = f => REGIONS.reduce((n, r) => n + SERVICES.reduce((m, s) => m + f[r][s], 0), 0);
+    assert.equal(total(fleet), total(START));
+});
+
+test('the pages are generated from one layout, and the topology without script is the fleet the page starts with', async () => {
+    const { START, summary } = await import('../app/fleet.js');
+    for (const file of Object.values(pages)) {
+        const html = read(file);
+        assert.match(html, /id="ops-map"[^>]*><svg class="topo"/, `${file}: the topology is in the page`);
+        assert.equal((html.match(/class="n run"/g) ?? []).length, 13, `${file}: every replica of the starting fleet`);
+        assert.ok(html.includes(summary(START)), `${file}: the topology's accessible name`);
+        assert.match(html, /media-src 'self'/, `${file}: videos only from the site`);
+        for (const name of ['deck-loop', 'relief-loop']) {
+            assert.match(html, new RegExp(`poster="/media/${name}-poster.jpg"`), `${file}: ${name} has a poster`);
+            assert.match(html, new RegExp(`<video class="loop" muted loop playsinline preload="none"`), `${file}: muted, lazy`);
+        }
+        assert.doesNotMatch(html, /autoplay/, `${file}: nothing autoplays; the page plays a video on screen and never with reduced motion`);
+    }
+});
+
+test('the media fit the deploy and each loop stays under 3 MB', () => {
+    let bytes = 0;
+    for (const file of readdirSync(join(ROOT, 'media'))) {
+        const size = readFileSync(join(ROOT, 'media', file)).length;
+        if (/\.(webm|mp4)$/.test(file)) assert.ok(size < 3 * 1024 * 1024, `${file}: ${size} bytes`);
+        bytes += size;
+    }
+    assert.ok(bytes < 5 * 1024 * 1024, `media: ${bytes} bytes`);
+});

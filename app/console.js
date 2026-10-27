@@ -152,4 +152,13 @@ form.addEventListener('submit', event => {
     current = null;
     replan();
 });
+// The sample sentences: a button puts its sentence in the box and plans it.
+for (const button of document.querySelectorAll('button.try')) {
+    button.setAttribute('aria-label', `${t('console.select')}: ${button.dataset.sentence}`);
+    button.addEventListener('click', () => {
+        input.value = button.dataset.sentence;
+        current = null;
+        replan();
+    });
+}
 if (input.value.trim()) replan();

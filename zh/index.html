@@ -3,98 +3,125 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VibeCloud — 你的云基础设施控制平面</title>
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b1423">
+<title>VibeCloud — 说出舰队应有的样子</title>
 <meta name="description" content="vibeCloud：描述你的需求，它在 AWS、Google Cloud 和 Cloudflare 上规划、开通、连接并运行。某个服务商不可用时，工作负载会迁移。">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <link rel="canonical" href="https://vibecloud.commandagi.app/zh/">
 <link rel="alternate" hreflang="en" href="https://vibecloud.commandagi.app/">
 <link rel="alternate" hreflang="es" href="https://vibecloud.commandagi.app/es/">
 <link rel="alternate" hreflang="zh-Hans" href="https://vibecloud.commandagi.app/zh/">
 <link rel="alternate" hreflang="x-default" href="https://vibecloud.commandagi.app/">
-<meta property="og:title" content="VibeCloud — 你的云基础设施控制平面">
+<meta property="og:title" content="VibeCloud — 说出舰队应有的样子">
 <meta property="og:description" content="描述一个工作负载。vibeCloud 在多个服务商之间规划、开通、连接并运行它。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vibecloud.commandagi.app/zh/">
+<meta property="og:image" content="https://vibecloud.commandagi.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
-<link rel="stylesheet" href="../style.css">
-<script src="../app/lang.js" defer></script>
-<script src="../app/console.js" type="module"></script>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<script src="/app/lang.js" defer></script>
+<script src="/app/console.js" type="module"></script>
+<script src="/app/ops.js" type="module"></script>
 </head>
-<body>
-<header class="wrap top">
-  <a class="brand" href="/"><strong>vibeCloud</strong><span>CommandAGI 旗下公司</span></a>
-  <nav class="main" aria-label="主导航">
-    <a href="#product">产品</a>
-    <a href="#console">控制台</a>
-    <a href="#providers">服务商</a>
-    <a href="#pricing">价格</a>
-    <a href="../about.html">关于</a>
-  </nav>
+<body class="home">
+<a class="skip" href="#console">跳到控制台</a>
+<header class="top">
+  <a class="brand" href="/zh/"><svg class="wordmark" viewBox="0 0 132 24" role="img" aria-label="VibeCloud">
+<path class="wm-mark" d="M1 1h15l5 5v17H1z M1 15h20" />
+<path class="wm-caret" d="M5 6.5l3.5 3l-3.5 3"/>
+<text class="wm-word" x="28" y="17.5"><tspan>vibe</tspan><tspan class="wm-cloud" dx="0.4">cloud</tspan></text>
+</svg><span>CommandAGI 旗下公司</span></a>
+  <nav class="main" aria-label="主导航"><a href="#top">舰队</a><a href="#product">原理</a><a href="#console">控制台</a><a href="#providers">服务商</a><a href="#pricing">现状</a><a href="/about.html">关于</a><a href="/team.html">团队</a></nav>
+  <button class="kbar" type="button" data-palette hidden aria-haspopup="dialog" aria-label="命令面板"><kbd>⌘</kbd><kbd>K</kbd></button>
 </header>
 
 <main>
-  <section class="wrap hero">
-    <div>
-      <p class="eyebrow">云控制平面</p>
-      <h1>描述你的云。我们来开通、连接并运行。</h1>
-      <p class="lede">vibeCloud 把一句话变成在 AWS、Google Cloud 和 Cloudflare 上运行的基础设施。它为每个服务选择最便宜且健康的账户，把它们连接起来，并在某个服务商拒绝、降级或涨价时迁移工作负载。</p>
-      <div class="actions">
-        <a class="btn" href="#console">试用控制台</a>
-        <a class="go" href="#product">工作原理</a>
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="kicker">云控制平面 · v0 · 抢先体验</p>
+      <h1 id="hero-title"><span>说出舰队</span> <span class="h1-b">应有的样子。</span></h1>
+      <p class="lede">输入一句话，得到一份方案。任何东西启动之前都由你批准。</p>
+      <p class="hint">按 <kbd>⌘</kbd><kbd>K</kbd> 或在下面输入命令。</p>
+    </div>
+    <div class="ops" id="ops" data-phase="idle">
+      <div class="ops-bar"><span class="ops-path">fleet <span aria-hidden="true">›</span> illustrative</span><output id="ops-state" class="ops-state">空闲</output></div>
+      <form id="ops-form" class="ops-form">
+        <label for="ops-cmd" class="vh">命令</label>
+        <span class="prompt" aria-hidden="true">›</span>
+        <input id="ops-cmd" name="cmd" value="scale api to 6 in us-west" autocomplete="off" autocapitalize="off" spellcheck="false" lang="en">
+        <button type="submit" class="key">规划 <span aria-hidden="true">↵</span></button>
+      </form>
+      <div id="ops-map" class="ops-map"><svg class="topo" viewBox="0 0 600 252" role="img" aria-label="三个区域中的示意舰队：us-west: 3 api, 1 worker, 1 db; us-east: 2 api, 1 worker, 1 queue; eu-central: 2 api, 1 db, 1 queue"><text class="t-svc" x="0" y="75">api</text><line class="t-row" x1="56" x2="600" y1="93" y2="93"/><text class="t-svc" x="0" y="121">worker</text><line class="t-row" x1="56" x2="600" y1="139" y2="139"/><text class="t-svc" x="0" y="167">db</text><line class="t-row" x1="56" x2="600" y1="185" y2="185"/><text class="t-svc" x="0" y="213">queue</text><line class="t-row" x1="56" x2="600" y1="231" y2="231"/><text class="t-region" x="76" y="22">us-west</text><line class="t-col" x1="76" x2="236" y1="32" y2="32"/><g class="n run" data-node="us-west/api/0"><rect x="76" y="62" width="18" height="18"/></g><g class="n run" data-node="us-west/api/1"><rect x="101" y="62" width="18" height="18"/></g><g class="n run" data-node="us-west/api/2"><rect x="126" y="62" width="18" height="18"/></g><g class="n run" data-node="us-west/worker/0"><rect x="76" y="108" width="18" height="18"/></g><g class="n run" data-node="us-west/db/0"><rect x="76" y="154" width="18" height="18"/></g><text class="t-region" x="252" y="22">us-east</text><line class="t-col" x1="252" x2="412" y1="32" y2="32"/><g class="n run" data-node="us-east/api/0"><rect x="252" y="62" width="18" height="18"/></g><g class="n run" data-node="us-east/api/1"><rect x="277" y="62" width="18" height="18"/></g><g class="n run" data-node="us-east/worker/0"><rect x="252" y="108" width="18" height="18"/></g><g class="n run" data-node="us-east/queue/0"><rect x="252" y="200" width="18" height="18"/></g><text class="t-region" x="428" y="22">eu-central</text><line class="t-col" x1="428" x2="588" y1="32" y2="32"/><g class="n run" data-node="eu-central/api/0"><rect x="428" y="62" width="18" height="18"/></g><g class="n run" data-node="eu-central/api/1"><rect x="453" y="62" width="18" height="18"/></g><g class="n run" data-node="eu-central/db/0"><rect x="428" y="154" width="18" height="18"/></g><g class="n run" data-node="eu-central/queue/0"><rect x="428" y="200" width="18" height="18"/></g></svg></div>
+      <ul class="legend" aria-hidden="true"><li class="lg-run">运行中</li><li class="lg-add">已提议</li><li class="lg-del">撤下中</li><li class="lg-ok">已验证</li></ul>
+      <ol class="rail"><li data-state="proposed">已提议</li><li data-state="approved">已批准</li><li data-state="provisioned">已开通</li><li data-state="verified">已验证</li></ol>
+      <div class="ops-actions">
+        <button type="button" id="ops-approve" class="key" disabled>批准</button>
+        <button type="button" id="ops-apply" class="key amber" disabled>执行</button>
+        <button type="button" id="ops-reset" class="key quiet">重置</button>
       </div>
-    </div>
-    <figure class="diagram">
-      <svg viewBox="0 0 460 260" role="img" aria-label="一句话进入规划器，规划器把每个资源放在 AWS、Google Cloud 或 Cloudflare 上，并把它们连接起来。">
-        <rect class="you" x="6" y="100" width="96" height="60" rx="10"/>
-        <text x="54" y="126" text-anchor="middle">一句话</text>
-        <text x="54" y="142" text-anchor="middle">来自一个人</text>
-        <path class="wire" d="M102 130 H150" marker-end="url(#a)"/>
-        <rect class="box" x="150" y="92" width="120" height="76" rx="12"/>
-        <text x="210" y="122" text-anchor="middle">规划器</text>
-        <text x="210" y="138" text-anchor="middle">能力 · 区域</text>
-        <text x="210" y="152" text-anchor="middle">价格 · 健康</text>
-        <path class="wire" d="M270 112 H310"/>
-        <path class="wire" d="M270 130 H310"/>
-        <path class="wire" d="M270 148 H310"/>
-        <rect class="box" x="310" y="46" width="140" height="42" rx="10"/>
-        <text x="380" y="72" text-anchor="middle">AWS</text>
-        <rect class="box" x="310" y="110" width="140" height="42" rx="10"/>
-        <text x="380" y="136" text-anchor="middle">Google Cloud</text>
-        <rect class="box" x="310" y="174" width="140" height="42" rx="10"/>
-        <text x="380" y="200" text-anchor="middle">Cloudflare</text>
-        <path class="wire" d="M380 214 V232 H210 V168" stroke-dasharray="4 4"/>
-        <text x="222" y="248">一个工作负载，跨服务商连接</text>
-        <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor"/></marker></defs>
-      </svg>
-      <figcaption>方案在启动任何资源之前，就写明每个资源的服务商、区域和价格。</figcaption>
-    </figure>
-  </section>
-
-  <section class="wrap block" id="product" aria-labelledby="product-title">
-    <h2 id="product-title">工作原理</h2>
-    <p class="sub">四个步骤，一段描述。描述里不出现任何服务商。</p>
-    <div class="cards">
-      <article class="card"><h3>1. 描述</h3><p>一个网页服务、一个数据库、一个队列、对象存储、一块 GPU、一个区域和每月上限。用能力，而不是产品名。</p></article>
-      <article class="card"><h3>2. 规划</h3><p>每个资源交给该区域中提供它的最便宜的健康账户。方案也写明其他账户为什么落选，方便你核对。</p></article>
-      <article class="card"><h3>3. 开通并连接</h3><p>vibeCloud 调用每个服务商的 API，回读每个资源，然后写入连接：数据库地址、队列端点、存储桶策略和网络规则。</p></article>
-      <article class="card"><h3>4. 迁移</h3><p>拒绝、降级或容量不足的服务商会被标记。工作负载按同一段描述迁到另一个账户，记录写明迁移了什么。</p></article>
+      <ul id="ops-log" class="ops-log" aria-live="polite"></ul>
+      <p class="illus">示意舰队，在本页模拟。不会开通任何资源。</p>
     </div>
   </section>
 
-  <section class="wrap block" id="console" aria-labelledby="console-title">
-    <h2 id="console-title">试用控制台</h2>
-    <p class="sub">用一句话描述一个工作负载。控制台会在本浏览器中，按示例服务商清单为它制定方案。</p>
+  <section class="deck" aria-labelledby="deck-title">
+  <div class="reel">
+    <video class="loop" muted loop playsinline preload="none" poster="/media/deck-loop-poster.jpg" aria-hidden="true">
+      <source src="/media/deck-loop.webm" type="video/webm; codecs=av01.0.05M.08">
+      <source src="/media/deck-loop.mp4" type="video/mp4">
+    </video>
+    <button class="vid-toggle" type="button" aria-pressed="false" hidden>暂停视频</button>
+    <p class="reel-cap">生成的影像（fal · Kling 2.1）。不是真实地点。</p>
+  </div>
+    <div class="deck-type">
+      <p class="kicker">§01 · 描述</p>
+      <h2 id="deck-title"><span>写能力，</span> <span class="dim">不写产品名。</span></h2>
+      <p>你写网页服务、数据库、队列。方案写出服务商。</p>
+    </div>
+  </section>
+
+  <section class="how" id="product" aria-labelledby="how-title">
+    <header class="how-head"><p class="kicker">§02 · 方案如何推进</p><h2 id="how-title">四个状态，一份描述。</h2></header>
+    <div class="how-body">
+      <div class="steps-col">
+        <article class="step-text" data-step="1"><p class="step-n">01 · described</p><h3>描述</h3><p>欧洲的网页应用、Postgres 数据库、队列、对象存储，以及每月上限。</p></article>
+        <article class="step-text" data-step="2"><p class="step-n">02 · planned</p><h3>规划</h3><p>每个资源去往当地提供它的、最便宜的健康账户。方案写明其他账户为何落选。</p></article>
+        <article class="step-text" data-step="3"><p class="step-n">03 · wired</p><h3>开通并连接</h3><p>每个服务商的 API 只调用一次。每个资源都会被读回，然后连接：URL、端点、策略。</p></article>
+        <article class="step-text" data-step="4"><p class="step-n">04 · moved</p><h3>故障转移</h3><p>Google Cloud 拒绝服务。数据库在同一描述下迁到 AWS，记录写明迁移了什么。</p></article>
+      </div>
+      <figure class="stage" id="stage" data-step="4"><svg class="stage-svg" viewBox="0 0 480 400" role="img" aria-label="欧洲网页应用的示例方案：容器、存储和队列在 Cloudflare，Postgres 在 Google Cloud；Google Cloud 不可用时，Postgres 迁到 AWS。">
+<g class="s s1"><rect class="sentence" x="10" y="12" width="460" height="40"/><text class="sentence-t" x="24" y="37">› web app · eu · postgres · queue · storage · ≤ $250</text></g>
+<g class="s s2"><g class="lane lane-0"><line x1="92" x2="92" y1="96" y2="388"/><text class="lane-t" x="92" y="84" text-anchor="middle">Cloudflare</text><text class="lane-id" x="92" y="384" text-anchor="middle">cloudflare/main</text></g><g class="lane lane-1"><line x1="232" x2="232" y1="96" y2="388"/><text class="lane-t" x="232" y="84" text-anchor="middle">Google Cloud</text><text class="lane-id" x="232" y="384" text-anchor="middle">gcp/main</text></g><g class="lane lane-2"><line x1="372" x2="372" y1="96" y2="388"/><text class="lane-t" x="372" y="84" text-anchor="middle">AWS</text><text class="lane-id" x="372" y="384" text-anchor="middle">aws/main</text></g>
+<g class="chip c-ct"><rect x="33" y="120" width="118" height="28"/><text x="43" y="138">container</text></g><g class="chip c-st"><rect x="33" y="170" width="118" height="28"/><text x="43" y="188">storage</text></g><g class="chip c-qu"><rect x="33" y="220" width="118" height="28"/><text x="43" y="238">queue</text></g><g class="chip c-db"><rect x="173" y="270" width="118" height="28"/><text x="183" y="288">postgres</text></g>
+<path class="fan" d="M240 52 C 240 80, 92 90, 92 120 M240 52 C 240 90, 232 240, 232 270"/></g>
+<g class="s s3"><path class="wire" d="M92 148 V170 M92 198 V220 M151 134 H200 C 220 134, 232 200, 232 270"/><text class="ok-t" x="300" y="140">✓ read back</text><text class="ok-t" x="300" y="160">✓ wired</text></g>
+<g class="s s4"><rect class="down" x="173" y="96" width="118" height="270"/><text class="down-t" x="232" y="118" text-anchor="middle">拒绝</text>
+<g class="chip c-db2"><rect x="313" y="270" width="118" height="28"/><text x="323" y="288">postgres</text></g><path class="move" d="M291 284 H313"/><text class="move-t" x="372" y="320" text-anchor="middle">已迁移: gcp → aws</text></g>
+</svg></figure>
+    </div>
+  </section>
+
+  <section class="desk" id="console" aria-labelledby="console-title">
+    <header class="desk-head"><p class="kicker">§03 · 控制台</p><h2 id="console-title">规划一句真实的话。</h2><p class="sub">规划器在本浏览器中运行，使用含五个账户的示例目录。</p></header>
     <div class="console">
-      <p class="note">在你的浏览器中模拟：不调用任何服务商，价格只是示例。</p>
-      <noscript><p class="note">控制台在你的浏览器中规划，因此需要 JavaScript。它遵循的规则在<a href="../about.html">关于</a>中。</p></noscript>
+      <p class="note" data-i18n="console.simulated">在你的浏览器中模拟：不会调用任何服务商，价格为示例。</p>
+      <noscript><p class="note">控制台在你的浏览器中规划，因此需要 JavaScript。它遵循的规则见 <a href="/about.html">关于</a>.</p></noscript>
       <form id="plan-form">
-        <label for="describe">描述你的需求</label>
-        <textarea id="describe" name="describe" rows="2" spellcheck="false">一个在欧洲的网页应用，带 Postgres 数据库、队列和对象存储，每月不超过 250 美元。</textarea>
+        <label for="describe">描述你需要什么</label>
+        <textarea id="describe" name="describe" rows="3" spellcheck="false">一个在欧洲的网页应用，带 Postgres 数据库、队列和对象存储，每月不超过 250 美元。</textarea>
+        <div class="tries"><span>试试</span><button type="button" class="try" data-sentence="一个在欧洲的网页应用，带 Postgres 数据库、队列和对象存储，每月不超过 250 美元。">1</button><button type="button" class="try" data-sentence="美国的一台 GPU 用于模型训练，加一个 Postgres 数据库，每月不超过 3,000 美元。">2</button><button type="button" class="try" data-sentence="新加坡的一个 API，带队列和 CDN，每月不超过 120 美元。">3</button></div>
         <div class="controls">
-          <button class="primary" type="submit">生成方案</button>
-          <label for="outage">让一个服务商无响应</label>
+          <button class="key amber" type="submit">开始规划 <span aria-hidden="true">↵</span></button>
+          <label for="outage">某个服务商无响应</label>
           <select id="outage" name="outage"><option value="">所有服务商正常</option></select>
         </div>
       </form>
@@ -102,32 +129,41 @@
     </div>
   </section>
 
-  <section class="wrap block" id="providers" aria-labelledby="providers-title">
-    <h2 id="providers-title">服务商</h2>
-    <p class="sub">示例清单包含五个账户。真实账户是 VibeCloud 账户列表中的一行，不是代码。</p>
-    <div class="providers">
-      <div class="provider"><strong>AWS</strong><span>us-east-1、eu-central-1、ap-southeast-1</span></div>
-      <div class="provider"><strong>Google Cloud</strong><span>us-central1、europe-west3、asia-south1</span></div>
-      <div class="provider"><strong>Cloudflare</strong><span>覆盖所有区域的边缘：容器、D1、R2、队列、CDN</span></div>
-      <div class="provider"><strong>Hetzner</strong><span>欧洲：示例中最便宜的虚拟机</span></div>
-      <div class="provider"><strong>Runpod</strong><span>美国和欧洲：按小时计费的 GPU</span></div>
+  <section class="ledger" id="providers" aria-labelledby="providers-title">
+  <div class="reel">
+    <video class="loop" muted loop playsinline preload="none" poster="/media/relief-loop-poster.jpg" aria-hidden="true">
+      <source src="/media/relief-loop.webm" type="video/webm; codecs=av01.0.05M.08">
+      <source src="/media/relief-loop.mp4" type="video/mp4">
+    </video>
+    <button class="vid-toggle" type="button" aria-pressed="false" hidden>暂停视频</button>
+    <p class="reel-cap">生成的地形（fal · Kling 2.1）。仅为插图，不是数据中心地图。</p>
+  </div>
+    <div class="ledger-type">
+      <p class="kicker">§04 · 示例目录</p>
+      <h2 id="providers-title">五个账户。是数据行，不是代码。</h2>
+      <table class="accounts">
+        <tbody><tr><th scope="row">AWS</th><td class="mono">aws/main</td><td>us-east-1 · eu-central-1 · ap-southeast-1</td></tr><tr><th scope="row">Google Cloud</th><td class="mono">gcp/main</td><td>us-central1 · europe-west3 · asia-south1</td></tr><tr><th scope="row">Cloudflare</th><td class="mono">cloudflare/main</td><td>边缘，覆盖所有区域：容器、D1、R2、队列、CDN</td></tr><tr><th scope="row">Hetzner</th><td class="mono">hetzner/eu</td><td>欧洲：示例中最便宜的虚拟机</td></tr><tr><th scope="row">Runpod</th><td class="mono">runpod/gpu</td><td>美国和欧洲：按小时计费的 GPU</td></tr></tbody>
+      </table>
+      <p class="note">放置规则：先看能力和区域，再看健康状况，最后看价格。</p>
     </div>
-    <p class="note">能力：虚拟机、容器、GPU、Postgres、MySQL、D1、对象存储、队列、CDN、函数和模型端点。你刚用过的控制台与开通器遵循同一套放置规则：先看能力和区域，再看健康，最后看价格。</p>
   </section>
 
-  <section class="wrap block" id="pricing" aria-labelledby="pricing-title">
-    <h2 id="pricing-title">价格</h2>
-    <p class="sub">抢先体验。VibeCloud 正在运行 CommandAGI 各公司的第一批工作负载。公开方案尚未确定，控制台不提供注册。</p>
-    <p class="note">控制台中的服务商价格是演示用的整数，不是报价。如需运行你自己的负载，请写信至 <a href="mailto:hello@vibecloud.pro">hello@vibecloud.pro</a>。</p>
+  <section class="status" id="pricing" aria-labelledby="status-title">
+    <p class="kicker">§05 · 现状</p>
+    <h2 id="status-title">今天能运行什么，不能运行什么。</h2>
+    <ul class="board" aria-describedby="board-legend"><li class="is-built"><span class="mono">已完成</span>规划器：在你的浏览器中，基于示例目录</li><li class="is-built"><span class="mono">已完成</span>上方的舰队控制台：一个模拟</li><li class="is-not"><span class="mono">未完成</span>服务商账户和开通器</li><li class="is-not"><span class="mono">未完成</span>实时故障转移执行器</li></ul>
+    <p class="note" id="board-legend">这是已完成事项的清单，不是实时状态。</p>
+    <p class="pricing">价格：抢先体验。VibeCloud 正在运行 CommandAGI 各公司的第一批工作负载。没有公开方案，也不提供注册。</p>
+    <p class="note">这里的服务商价格是演示用的整数，不是报价。 如需运行你自己的负载，请写信至 <a href="mailto:hello@vibecloud.pro">hello@vibecloud.pro</a>.</p>
   </section>
 </main>
 
-<footer class="wrap foot">
+<footer class="foot">
   <p id="lang-hint" hidden><a href="/zh/" hreflang="zh-Hans">在简体中文中查看</a></p>
   <div class="row">
     <p>© 2026 VibeCloud · CommandAGI 旗下公司 · <a href="mailto:hello@vibecloud.pro">hello@vibecloud.pro</a></p>
     <nav aria-label="页脚">
-      <a href="../about.html">关于</a>
+      <a href="/about.html">关于</a>
       <a href="mailto:hello@vibecloud.pro">联系我们</a>
       <button class="lang-button" type="button" id="lang-button" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="语言">A/文</button>
     </nav>
@@ -143,6 +179,11 @@
     <li><a href="/zh/" data-lang="zh" lang="zh-Hans" aria-current="true">简体中文</a></li>
   </ul>
   <form method="dialog"><button class="lang-button close" type="submit">关闭</button></form>
+</dialog>
+
+<dialog id="palette" class="palette" aria-label="命令面板">
+  <div class="pal-in"><span class="prompt" aria-hidden="true">›</span><input id="palette-input" role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="输入命令，或选择一条" aria-label="输入命令，或选择一条"><kbd>esc</kbd></div>
+  <ul id="palette-list" role="listbox" aria-label="命令面板"></ul>
 </dialog>
 </body>
 </html>

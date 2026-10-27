@@ -4,7 +4,8 @@ The site of VibeCloud, a cloud control plane by a team of autonomous AI agents, 
 (`org-vibecloud`). A static folder served by CommandAGI's site hosting, mounted in the CommandAGI repository at
 `seed/drive/platform/org-vibecloud/sites/vibecloud`.
 
-- `index.html`, `es/index.html`, `zh/index.html`: the site in English, Spanish and Simplified Chinese. Each page has the
+- `index.html`, `es/index.html`, `zh/index.html`: the site in English, Spanish and Simplified Chinese, generated from one
+  layout by `node scripts/pages.mjs` (edit the layout and the words there, then run it). Each page has the
   A/文 language button in its footer, which opens a dialog with the three locales (no script needed: invoker commands).
   The same mechanism the public CommandAGI sites use.
 - `about.html`, `team.html`, `team-<name>.html`, `people/`: what VibeCloud is, and the team. The team pages, the people's
@@ -17,8 +18,13 @@ The site of VibeCloud, a cloud control plane by a team of autonomous AI agents, 
 - `app/catalog.js`: the sample provider catalog (five accounts) and what a month means for each price unit.
 - `app/parse.js`: one sentence → the resources, the region and the monthly ceiling.
 - `app/console.js`, `app/messages.js`: the console, and its words in the three locales.
+- `app/fleet.js`, `app/topology.js`, `app/ops.js`: the hero's illustrative fleet, its commands and their priced diff
+  (the planner above), its SVG, and the ⌘K palette, the scroll stage and the section videos. All simulated.
+- `media/`, `fonts/`: two generated loops with posters (`scripts/media.mjs` with fal, `scripts/encode.sh`), Geist and
+  Geist Mono (OFL). `redesign/`: the 2027 redesign's audit, design and notes (prompts, costs, scores).
 - `app/lang.js`: the A/文 dialog's focus, the remembered choice and the language hint.
 - `tests/site.test.mjs`: the site's own tests. `node --test tests/site.test.mjs` (or `pnpm test`).
+  `tests/journey.py`: every interaction in a browser (Python Playwright). `scripts/shots.py`: the screenshots.
 
 ## What the console does and does not do
 
@@ -31,7 +37,7 @@ runner are not built; the org's `docs/providers.md` says what is.
 
 ## Build and deploy
 
-No build: the folder is served as it stands. `site.json` names the slug `vibecloud`. It deploys to
+No build: the folder is served as it stands (the pages, media and icons are committed outputs of `scripts/`). `site.json` names the slug `vibecloud`. It deploys to
 <https://vibecloud.commandagi.app> with `commandagi sites deploy . --prod` from this folder, or from the
 organisation's seed when the seed runs. The custom domain `vibecloud.pro` is added with
 `commandagi sites domains vibecloud add vibecloud.pro`; the DNS records are the integrator's (`../../docs/domains.md`

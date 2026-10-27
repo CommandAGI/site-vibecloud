@@ -3,98 +3,124 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VibeCloud — a control plane for your cloud infrastructure</title>
-<meta name="description" content="vibeCloud: describe what you need and it plans, provisions, wires and runs it across AWS, Google Cloud and Cloudflare. When a provider refuses, the workload moves.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b1423">
+<title>VibeCloud — say what the fleet should be</title>
+<meta name="description" content="VibeCloud: describe a workload and it plans, provisions, wires and runs it across AWS, Google Cloud and Cloudflare. When a provider refuses, the workload moves.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <link rel="canonical" href="https://vibecloud.commandagi.app/">
 <link rel="alternate" hreflang="en" href="https://vibecloud.commandagi.app/">
 <link rel="alternate" hreflang="es" href="https://vibecloud.commandagi.app/es/">
 <link rel="alternate" hreflang="zh-Hans" href="https://vibecloud.commandagi.app/zh/">
 <link rel="alternate" hreflang="x-default" href="https://vibecloud.commandagi.app/">
-<meta property="og:title" content="VibeCloud — a control plane for your cloud infrastructure">
-<meta property="og:description" content="Describe a workload. vibeCloud plans it across providers, provisions it, wires it and runs it.">
+<meta property="og:title" content="VibeCloud — say what the fleet should be">
+<meta property="og:description" content="Describe a workload. VibeCloud plans it across providers, provisions it, wires it and runs it.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vibecloud.commandagi.app/">
+<meta property="og:image" content="https://vibecloud.commandagi.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
 <meta property="og:locale:alternate" content="zh_CN">
-<link rel="stylesheet" href="style.css">
-<script src="app/lang.js" defer></script>
-<script src="app/console.js" type="module"></script>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<script src="/app/lang.js" defer></script>
+<script src="/app/console.js" type="module"></script>
+<script src="/app/ops.js" type="module"></script>
 </head>
-<body>
-<header class="wrap top">
-  <a class="brand" href="/"><strong>vibeCloud</strong><span>a company of CommandAGI</span></a>
-  <nav class="main" aria-label="Main">
-    <a href="#product">Product</a>
-    <a href="#console">Console</a>
-    <a href="#providers">Providers</a>
-    <a href="#pricing">Pricing</a>
-    <a href="about.html">About</a>
-      <a href="team.html">Team</a>
-  </nav>
+<body class="home">
+<a class="skip" href="#console">Skip to the console</a>
+<header class="top">
+  <a class="brand" href="/"><svg class="wordmark" viewBox="0 0 132 24" role="img" aria-label="VibeCloud">
+<path class="wm-mark" d="M1 1h15l5 5v17H1z M1 15h20" />
+<path class="wm-caret" d="M5 6.5l3.5 3l-3.5 3"/>
+<text class="wm-word" x="28" y="17.5"><tspan>vibe</tspan><tspan class="wm-cloud" dx="0.4">cloud</tspan></text>
+</svg><span>a company of CommandAGI</span></a>
+  <nav class="main" aria-label="Main"><a href="#top">fleet</a><a href="#product">how</a><a href="#console">console</a><a href="#providers">providers</a><a href="#pricing">status</a><a href="/about.html">about</a><a href="/team.html">team</a></nav>
+  <button class="kbar" type="button" data-palette hidden aria-haspopup="dialog" aria-label="Command palette"><kbd>⌘</kbd><kbd>K</kbd></button>
 </header>
 
 <main>
-  <section class="wrap hero">
-    <div>
-      <p class="eyebrow">Cloud control plane</p>
-      <h1>Describe your cloud. We provision, wire and run it.</h1>
-      <p class="lede">vibeCloud turns one sentence into running infrastructure across AWS, Google Cloud and Cloudflare. It picks the cheapest healthy account for each service, wires them together, and moves a workload when a provider refuses, degrades or raises its price.</p>
-      <div class="actions">
-        <a class="btn" href="#console">Try the console</a>
-        <a class="go" href="#product">How it works</a>
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="kicker">cloud control plane · v0 · early access</p>
+      <h1 id="hero-title"><span>Say what the fleet</span> <span class="h1-b">should be.</span></h1>
+      <p class="lede">One sentence in, a plan out. You approve before anything starts.</p>
+      <p class="hint">Press <kbd>⌘</kbd><kbd>K</kbd> or type a command below.</p>
+    </div>
+    <div class="ops" id="ops" data-phase="idle">
+      <div class="ops-bar"><span class="ops-path">fleet <span aria-hidden="true">›</span> illustrative</span><output id="ops-state" class="ops-state">idle</output></div>
+      <form id="ops-form" class="ops-form">
+        <label for="ops-cmd" class="vh">Command</label>
+        <span class="prompt" aria-hidden="true">›</span>
+        <input id="ops-cmd" name="cmd" value="scale api to 6 in us-west" autocomplete="off" autocapitalize="off" spellcheck="false" lang="en">
+        <button type="submit" class="key">Plan <span aria-hidden="true">↵</span></button>
+      </form>
+      <div id="ops-map" class="ops-map"><svg class="topo" viewBox="0 0 600 252" role="img" aria-label="The illustrative fleet in three regions: us-west: 3 api, 1 worker, 1 db; us-east: 2 api, 1 worker, 1 queue; eu-central: 2 api, 1 db, 1 queue"><text class="t-svc" x="0" y="75">api</text><line class="t-row" x1="56" x2="600" y1="93" y2="93"/><text class="t-svc" x="0" y="121">worker</text><line class="t-row" x1="56" x2="600" y1="139" y2="139"/><text class="t-svc" x="0" y="167">db</text><line class="t-row" x1="56" x2="600" y1="185" y2="185"/><text class="t-svc" x="0" y="213">queue</text><line class="t-row" x1="56" x2="600" y1="231" y2="231"/><text class="t-region" x="76" y="22">us-west</text><line class="t-col" x1="76" x2="236" y1="32" y2="32"/><g class="n run" data-node="us-west/api/0"><rect x="76" y="62" width="18" height="18"/></g><g class="n run" data-node="us-west/api/1"><rect x="101" y="62" width="18" height="18"/></g><g class="n run" data-node="us-west/api/2"><rect x="126" y="62" width="18" height="18"/></g><g class="n run" data-node="us-west/worker/0"><rect x="76" y="108" width="18" height="18"/></g><g class="n run" data-node="us-west/db/0"><rect x="76" y="154" width="18" height="18"/></g><text class="t-region" x="252" y="22">us-east</text><line class="t-col" x1="252" x2="412" y1="32" y2="32"/><g class="n run" data-node="us-east/api/0"><rect x="252" y="62" width="18" height="18"/></g><g class="n run" data-node="us-east/api/1"><rect x="277" y="62" width="18" height="18"/></g><g class="n run" data-node="us-east/worker/0"><rect x="252" y="108" width="18" height="18"/></g><g class="n run" data-node="us-east/queue/0"><rect x="252" y="200" width="18" height="18"/></g><text class="t-region" x="428" y="22">eu-central</text><line class="t-col" x1="428" x2="588" y1="32" y2="32"/><g class="n run" data-node="eu-central/api/0"><rect x="428" y="62" width="18" height="18"/></g><g class="n run" data-node="eu-central/api/1"><rect x="453" y="62" width="18" height="18"/></g><g class="n run" data-node="eu-central/db/0"><rect x="428" y="154" width="18" height="18"/></g><g class="n run" data-node="eu-central/queue/0"><rect x="428" y="200" width="18" height="18"/></g></svg></div>
+      <ul class="legend" aria-hidden="true"><li class="lg-run">running</li><li class="lg-add">proposed</li><li class="lg-del">removing</li><li class="lg-ok">verified</li></ul>
+      <ol class="rail"><li data-state="proposed">proposed</li><li data-state="approved">approved</li><li data-state="provisioned">provisioned</li><li data-state="verified">verified</li></ol>
+      <div class="ops-actions">
+        <button type="button" id="ops-approve" class="key" disabled>Approve</button>
+        <button type="button" id="ops-apply" class="key amber" disabled>Apply</button>
+        <button type="button" id="ops-reset" class="key quiet">Reset</button>
       </div>
-    </div>
-    <figure class="diagram">
-      <svg viewBox="0 0 460 260" role="img" aria-label="One sentence goes into the planner, which places each resource on AWS, Google Cloud or Cloudflare and wires them to each other.">
-        <rect class="you" x="6" y="100" width="96" height="60" rx="10"/>
-        <text x="54" y="126" text-anchor="middle">a sentence</text>
-        <text x="54" y="142" text-anchor="middle">from a person</text>
-        <path class="wire" d="M102 130 H150" marker-end="url(#a)"/>
-        <rect class="box" x="150" y="92" width="120" height="76" rx="12"/>
-        <text x="210" y="122" text-anchor="middle">planner</text>
-        <text x="210" y="138" text-anchor="middle">capability · region</text>
-        <text x="210" y="152" text-anchor="middle">price · health</text>
-        <path class="wire" d="M270 112 H310"/>
-        <path class="wire" d="M270 130 H310"/>
-        <path class="wire" d="M270 148 H310"/>
-        <rect class="box" x="310" y="46" width="140" height="42" rx="10"/>
-        <text x="380" y="72" text-anchor="middle">AWS</text>
-        <rect class="box" x="310" y="110" width="140" height="42" rx="10"/>
-        <text x="380" y="136" text-anchor="middle">Google Cloud</text>
-        <rect class="box" x="310" y="174" width="140" height="42" rx="10"/>
-        <text x="380" y="200" text-anchor="middle">Cloudflare</text>
-        <path class="wire" d="M380 214 V232 H210 V168" stroke-dasharray="4 4"/>
-        <text x="222" y="248">one workload, wired across providers</text>
-        <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor"/></marker></defs>
-      </svg>
-      <figcaption>The plan names each resource's provider, region and price before anything is started.</figcaption>
-    </figure>
-  </section>
-
-  <section class="wrap block" id="product" aria-labelledby="product-title">
-    <h2 id="product-title">How it works</h2>
-    <p class="sub">Four steps, one description. Nothing about a provider is in the description itself.</p>
-    <div class="cards">
-      <article class="card"><h3>1. Describe</h3><p>A web service, a database, a queue, object storage, a GPU, a region, a monthly ceiling. Capabilities, not product names.</p></article>
-      <article class="card"><h3>2. Plan</h3><p>Each resource goes to the cheapest healthy account that offers it in that region. The plan also says why the other accounts were left out, so you can check it.</p></article>
-      <article class="card"><h3>3. Provision and wire</h3><p>vibeCloud calls each provider's API, reads every resource back, then writes the wiring: database URL, queue endpoint, bucket policy and network rules.</p></article>
-      <article class="card"><h3>4. Fail over</h3><p>A provider that refuses, degrades or runs out of capacity is marked. The workload moves to another account under the same description, and the records say what moved.</p></article>
+      <ul id="ops-log" class="ops-log" aria-live="polite"></ul>
+      <p class="illus">Illustrative fleet, simulated in this page. Nothing is provisioned.</p>
     </div>
   </section>
 
-  <section class="wrap block" id="console" aria-labelledby="console-title">
-    <h2 id="console-title">Try the console</h2>
-    <p class="sub">Describe a workload in one sentence. The console plans it in this browser against a sample provider catalog.</p>
+  <section class="deck" aria-labelledby="deck-title">
+  <div class="reel">
+    <video class="loop" muted loop playsinline preload="none" poster="/media/deck-loop-poster.jpg" aria-hidden="true">
+      <source src="/media/deck-loop.webm" type="video/webm; codecs=av01.0.05M.08">
+      <source src="/media/deck-loop.mp4" type="video/mp4">
+    </video>
+    <button class="vid-toggle" type="button" aria-pressed="false" hidden>Pause the video</button>
+    <p class="reel-cap">Generated footage (fal · Kling 2.1). Not a real place.</p>
+  </div>
+    <div class="deck-type">
+      <p class="kicker">§01 · the description</p>
+      <h2 id="deck-title"><span>Capabilities,</span> <span class="dim">not product names.</span></h2>
+      <p>You name a web service, a database, a queue. The plan names the provider.</p>
+    </div>
+  </section>
+
+  <section class="how" id="product" aria-labelledby="how-title">
+    <header class="how-head"><p class="kicker">§02 · how a plan moves</p><h2 id="how-title">Four states. One description.</h2></header>
+    <div class="how-body">
+      <div class="steps-col">
+        <article class="step-text" data-step="1"><p class="step-n">01 · described</p><h3>Describe</h3><p>A web app in Europe, a Postgres database, a queue, object storage. A ceiling for the month.</p></article>
+        <article class="step-text" data-step="2"><p class="step-n">02 · planned</p><h3>Plan</h3><p>Each resource goes to the cheapest healthy account that offers it there. The plan says why the others are out.</p></article>
+        <article class="step-text" data-step="3"><p class="step-n">03 · wired</p><h3>Provision and wire</h3><p>Each provider’s API is called once. Every resource is read back, then wired: URLs, endpoints, policies.</p></article>
+        <article class="step-text" data-step="4"><p class="step-n">04 · moved</p><h3>Fail over</h3><p>Google Cloud refuses. The database moves to AWS under the same description, and the record says what moved.</p></article>
+      </div>
+      <figure class="stage" id="stage" data-step="4"><svg class="stage-svg" viewBox="0 0 480 400" role="img" aria-label="The sample plan for a web app in Europe: container, storage and queue on Cloudflare, Postgres on Google Cloud; when Google Cloud is down, Postgres moves to AWS.">
+<g class="s s1"><rect class="sentence" x="10" y="12" width="460" height="40"/><text class="sentence-t" x="24" y="37">› web app · eu · postgres · queue · storage · ≤ $250</text></g>
+<g class="s s2"><g class="lane lane-0"><line x1="92" x2="92" y1="96" y2="388"/><text class="lane-t" x="92" y="84" text-anchor="middle">Cloudflare</text><text class="lane-id" x="92" y="384" text-anchor="middle">cloudflare/main</text></g><g class="lane lane-1"><line x1="232" x2="232" y1="96" y2="388"/><text class="lane-t" x="232" y="84" text-anchor="middle">Google Cloud</text><text class="lane-id" x="232" y="384" text-anchor="middle">gcp/main</text></g><g class="lane lane-2"><line x1="372" x2="372" y1="96" y2="388"/><text class="lane-t" x="372" y="84" text-anchor="middle">AWS</text><text class="lane-id" x="372" y="384" text-anchor="middle">aws/main</text></g>
+<g class="chip c-ct"><rect x="33" y="120" width="118" height="28"/><text x="43" y="138">container</text></g><g class="chip c-st"><rect x="33" y="170" width="118" height="28"/><text x="43" y="188">storage</text></g><g class="chip c-qu"><rect x="33" y="220" width="118" height="28"/><text x="43" y="238">queue</text></g><g class="chip c-db"><rect x="173" y="270" width="118" height="28"/><text x="183" y="288">postgres</text></g>
+<path class="fan" d="M240 52 C 240 80, 92 90, 92 120 M240 52 C 240 90, 232 240, 232 270"/></g>
+<g class="s s3"><path class="wire" d="M92 148 V170 M92 198 V220 M151 134 H200 C 220 134, 232 200, 232 270"/><text class="ok-t" x="300" y="140">✓ read back</text><text class="ok-t" x="300" y="160">✓ wired</text></g>
+<g class="s s4"><rect class="down" x="173" y="96" width="118" height="270"/><text class="down-t" x="232" y="118" text-anchor="middle">refused</text>
+<g class="chip c-db2"><rect x="313" y="270" width="118" height="28"/><text x="323" y="288">postgres</text></g><path class="move" d="M291 284 H313"/><text class="move-t" x="372" y="320" text-anchor="middle">moved: gcp → aws</text></g>
+</svg></figure>
+    </div>
+  </section>
+
+  <section class="desk" id="console" aria-labelledby="console-title">
+    <header class="desk-head"><p class="kicker">§03 · the console</p><h2 id="console-title">Plan a real sentence.</h2><p class="sub">The planner runs in this browser against a sample catalog of five accounts.</p></header>
     <div class="console">
       <p class="note" data-i18n="console.simulated">Simulated in your browser: no provider is called, and the prices are a sample.</p>
-      <noscript><p class="note">The console plans in your browser, so it needs JavaScript. The rules it follows are in <a href="about.html">About</a>.</p></noscript>
+      <noscript><p class="note">The console plans in your browser, so it needs JavaScript. The rules it follows are in <a href="/about.html">About</a>.</p></noscript>
       <form id="plan-form">
         <label for="describe">Describe what you need</label>
-        <textarea id="describe" name="describe" rows="2" spellcheck="false">A web app in Europe with a Postgres database, a queue and object storage, under $250 a month.</textarea>
+        <textarea id="describe" name="describe" rows="3" spellcheck="false">A web app in Europe with a Postgres database, a queue and object storage, under $250 a month.</textarea>
+        <div class="tries"><span>Try</span><button type="button" class="try" data-sentence="A web app in Europe with a Postgres database, a queue and object storage, under $250 a month.">1</button><button type="button" class="try" data-sentence="A GPU for model training in the US, and a Postgres database, under $3,000 a month.">2</button><button type="button" class="try" data-sentence="An API in Singapore with a queue and a CDN, under $120 a month.">3</button></div>
         <div class="controls">
-          <button class="primary" type="submit">Plan it</button>
+          <button class="key amber" type="submit">Plan it <span aria-hidden="true">↵</span></button>
           <label for="outage">One provider answers nothing</label>
           <select id="outage" name="outage"><option value="">All providers healthy</option></select>
         </div>
@@ -103,32 +129,41 @@
     </div>
   </section>
 
-  <section class="wrap block" id="providers" aria-labelledby="providers-title">
-    <h2 id="providers-title">Providers</h2>
-    <p class="sub">The sample catalog holds five accounts. A real account is a row in VibeCloud's account list, not code.</p>
-    <div class="providers">
-      <div class="provider"><strong>AWS</strong><span>us-east-1, eu-central-1, ap-southeast-1</span></div>
-      <div class="provider"><strong>Google Cloud</strong><span>us-central1, europe-west3, asia-south1</span></div>
-      <div class="provider"><strong>Cloudflare</strong><span>edge in every region: containers, D1, R2, queues, CDN</span></div>
-      <div class="provider"><strong>Hetzner</strong><span>eu: the cheapest virtual machine in the sample</span></div>
-      <div class="provider"><strong>Runpod</strong><span>us and eu: GPU by the hour</span></div>
+  <section class="ledger" id="providers" aria-labelledby="providers-title">
+  <div class="reel">
+    <video class="loop" muted loop playsinline preload="none" poster="/media/relief-loop-poster.jpg" aria-hidden="true">
+      <source src="/media/relief-loop.webm" type="video/webm; codecs=av01.0.05M.08">
+      <source src="/media/relief-loop.mp4" type="video/mp4">
+    </video>
+    <button class="vid-toggle" type="button" aria-pressed="false" hidden>Pause the video</button>
+    <p class="reel-cap">Generated relief (fal · Kling 2.1). An illustration, not a map of data centers.</p>
+  </div>
+    <div class="ledger-type">
+      <p class="kicker">§04 · the sample catalog</p>
+      <h2 id="providers-title">Five accounts. Rows, not code.</h2>
+      <table class="accounts">
+        <tbody><tr><th scope="row">AWS</th><td class="mono">aws/main</td><td>us-east-1 · eu-central-1 · ap-southeast-1</td></tr><tr><th scope="row">Google Cloud</th><td class="mono">gcp/main</td><td>us-central1 · europe-west3 · asia-south1</td></tr><tr><th scope="row">Cloudflare</th><td class="mono">cloudflare/main</td><td>edge, every region: containers, D1, R2, queues, CDN</td></tr><tr><th scope="row">Hetzner</th><td class="mono">hetzner/eu</td><td>eu: the cheapest virtual machine in the sample</td></tr><tr><th scope="row">Runpod</th><td class="mono">runpod/gpu</td><td>us and eu: GPU by the hour</td></tr></tbody>
+      </table>
+      <p class="note">Placement: capability and region first, then health, then price.</p>
     </div>
-    <p class="note">Capabilities: virtual machines, containers, GPUs, Postgres, MySQL, D1, object storage, queues, CDN, functions and model endpoints. The console you just used follows the same placement rules as the provisioner will: capability and region first, then health, then price.</p>
   </section>
 
-  <section class="wrap block" id="pricing" aria-labelledby="pricing-title">
-    <h2 id="pricing-title">Pricing</h2>
-    <p class="sub">Early access. VibeCloud runs the first workloads for the companies of CommandAGI. A public plan is not set, and the console offers no sign-up.</p>
-    <p class="note">The provider prices in the console are round numbers for a demo, not quotes. For a workload of your own, write to <a href="mailto:hello@vibecloud.pro">hello@vibecloud.pro</a>.</p>
+  <section class="status" id="pricing" aria-labelledby="status-title">
+    <p class="kicker">§05 · where it stands</p>
+    <h2 id="status-title">What runs today, and what does not.</h2>
+    <ul class="board" aria-describedby="board-legend"><li class="is-built"><span class="mono">built</span>The planner, in your browser, on a sample catalog</li><li class="is-built"><span class="mono">built</span>The fleet console above: a simulation</li><li class="is-not"><span class="mono">not built</span>Provider accounts and the provisioners</li><li class="is-not"><span class="mono">not built</span>The live failover runner</li></ul>
+    <p class="note" id="board-legend">A list of what is built, not live status.</p>
+    <p class="pricing">Pricing: early access. VibeCloud runs the first workloads of the companies of CommandAGI. No public plan, no sign-up.</p>
+    <p class="note">The provider prices here are round numbers for a demo, not quotes. For a workload of your own, write to <a href="mailto:hello@vibecloud.pro">hello@vibecloud.pro</a>.</p>
   </section>
 </main>
 
-<footer class="wrap foot">
+<footer class="foot">
   <p id="lang-hint" hidden><a href="/es/" hreflang="es">Ver en español</a></p>
   <div class="row">
     <p>© 2026 VibeCloud · a company of CommandAGI · <a href="mailto:hello@vibecloud.pro">hello@vibecloud.pro</a></p>
     <nav aria-label="Footer">
-      <a href="about.html">About</a>
+      <a href="/about.html">About</a>
       <a href="mailto:hello@vibecloud.pro">Contact</a>
       <button class="lang-button" type="button" id="lang-button" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Language">A/文</button>
     </nav>
@@ -144,6 +179,11 @@
     <li><a href="/zh/" data-lang="zh" lang="zh-Hans">简体中文</a></li>
   </ul>
   <form method="dialog"><button class="lang-button close" type="submit">Close</button></form>
+</dialog>
+
+<dialog id="palette" class="palette" aria-label="Command palette">
+  <div class="pal-in"><span class="prompt" aria-hidden="true">›</span><input id="palette-input" role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Type a command, or pick one" aria-label="Type a command, or pick one"><kbd>esc</kbd></div>
+  <ul id="palette-list" role="listbox" aria-label="Command palette"></ul>
 </dialog>
 </body>
 </html>
