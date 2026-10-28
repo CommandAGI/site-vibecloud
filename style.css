@@ -1,11 +1,11 @@
 /* VibeCloud: calm mission control. The page is a console: dark only, hairline rules, beveled corners, one amber
    for what waits on a person. Self-hosted Geist and Geist Mono; no request leaves the site. redesign/DESIGN.md. */
 @font-face {
-  font-family: "Geist"; src: url("/fonts/geist-latin.woff2") format("woff2");
+  font-family: "Geist"; src: url("fonts/geist-latin.woff2") format("woff2");
   font-weight: 100 900; font-display: swap;
 }
 @font-face {
-  font-family: "Geist Mono"; src: url("/fonts/geist-mono-latin.woff2") format("woff2");
+  font-family: "Geist Mono"; src: url("fonts/geist-mono-latin.woff2") format("woff2");
   font-weight: 100 900; font-display: swap;
 }
 /* Metric-matched fallbacks, so the swap does not move the page (CLS). */
@@ -82,7 +82,8 @@ kbd { font: 500 0.78em/1 var(--mono); padding: 3px 5px; border: 1px solid var(--
 .brand { display: flex; align-items: center; gap: 14px; color: var(--ice); text-decoration: none; min-width: 0; }
 .brand strong { font: 600 19px/1 var(--sans); letter-spacing: -0.03em; }
 .brand span { font: 400 11px/1 var(--mono); color: var(--steel); white-space: nowrap; }
-.wordmark { height: 22px; width: auto; overflow: visible; }
+/* The viewBox holds the name's whole line box (3 units above and below the 24-unit mark): 27.5px draws the mark at 22px. */
+.wordmark { height: 27.5px; width: auto; overflow: visible; }
 .wm-mark { fill: none; stroke: var(--ice); stroke-width: 1.5; }
 .wm-caret { fill: none; stroke: var(--amber); stroke-width: 1.6; }
 .wm-word { font: 560 18px var(--sans); letter-spacing: -0.035em; fill: var(--ice); }
@@ -229,7 +230,8 @@ nav.main a[aria-current="page"] { text-decoration: underline 1px var(--amber); t
 .stage .s { opacity: 0; transition: opacity .6s ease, transform .6s ease; }
 .stage .s2 .chip { transition: transform .7s cubic-bezier(.2, .7, .2, 1); }
 .stage:not([data-step="1"]) .s2 .chip { transform: none; }
-.stage[data-step="1"] .s2 .chip { transform: translateY(-40px); }
+/* The chips drop into their lanes from just above, never as high as the lane names (they end at y 88; the first chip starts at 120). */
+.stage[data-step="1"] .s2 .chip { transform: translateY(-16px); }
 .stage .s1,
 .stage:is([data-step="2"], [data-step="3"], [data-step="4"]) .s2,
 .stage:is([data-step="3"], [data-step="4"]) .s3,

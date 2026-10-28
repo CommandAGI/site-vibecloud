@@ -147,7 +147,7 @@ const LOCALES = {
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 /** The wordmark: a console window whose bottom edge is a horizon, then the name, kerned by hand. */
-export const wordmark = label => `<svg class="wordmark" viewBox="0 0 132 24" role="img" aria-label="${esc(label)}">
+export const wordmark = label => `<svg class="wordmark" viewBox="0 -3 132 30" role="img" aria-label="${esc(label)}">
 <path class="wm-mark" d="M1 1h15l5 5v17H1z M1 15h20" />
 <path class="wm-caret" d="M5 6.5l3.5 3l-3.5 3"/>
 <text class="wm-word" x="28" y="17.5"><tspan>vibe</tspan><tspan class="wm-cloud" dx="0.4">cloud</tspan></text>
@@ -169,15 +169,17 @@ ${chip('c-db2', 313, 270, 'postgres')}<path class="move" d="M291 284 H313"/><tex
 
 function page(key) {
     const L = LOCALES[key];
+    // Assets by a relative path, so the page draws the same wherever its folder is served (the gate serves seed/ as its root).
+    const up = L.file.includes('/') ? '../' : '';
     const t = makeT(L.html);
     const alt = Object.values(LOCALES).map(o => `<link rel="alternate" hreflang="${o.html}" href="${SITE}${o.path}">`).join('\n');
     const nav = Object.entries(L.nav).map(([id, word]) => id === 'about' || id === 'team'
         ? `<a href="/${id}.html">${esc(word)}</a>` : `<a href="#${id}">${esc(word)}</a>`).join('');
     const langs = Object.values(LOCALES).map(o => `<li><a href="${o.path}" data-lang="${o.html === 'zh-Hans' ? 'zh' : o.html}" lang="${o.html}"${o === L ? ' aria-current="true"' : ''}>${o.name}</a></li>`).join('\n    ');
     const video = (name, cap) => `<div class="reel">
-    <video class="loop" muted loop playsinline preload="none" poster="/media/${name}-poster.jpg" aria-hidden="true">
-      <source src="/media/${name}.webm" type="video/webm; codecs=av01.0.05M.08">
-      <source src="/media/${name}.mp4" type="video/mp4">
+    <video class="loop" muted loop playsinline preload="none" poster="${up}media/${name}-poster.jpg" aria-hidden="true">
+      <source src="${up}media/${name}.webm" type="video/webm; codecs=av01.0.05M.08">
+      <source src="${up}media/${name}.mp4" type="video/mp4">
     </video>
     <button class="vid-toggle" type="button" aria-pressed="false" hidden>${esc(t('ops.pause'))}</button>
     <p class="reel-cap">${esc(cap)}</p>
@@ -205,13 +207,13 @@ ${alt}
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:locale" content="${L.og}">
 ${Object.values(LOCALES).filter(o => o !== L).map(o => `<meta property="og:locale:alternate" content="${o.og}">`).join('\n')}
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css">
-<script src="/app/lang.js" defer></script>
-<script src="/app/console.js" type="module"></script>
-<script src="/app/ops.js" type="module"></script>
+<link rel="icon" href="${up}favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="${up}apple-touch-icon.png">
+<link rel="preload" href="${up}fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="${up}style.css">
+<script src="${up}app/lang.js" defer></script>
+<script src="${up}app/console.js" type="module"></script>
+<script src="${up}app/ops.js" type="module"></script>
 </head>
 <body class="home">
 <a class="skip" href="#console">${esc(L.skip)}</a>
